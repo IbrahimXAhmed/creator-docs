@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عرض احترافي: التكنولوجيا وتوظيف الشباب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+      rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f1f5f9;
+        --primary: #0f172a;
+        --accent: #14b8a6;
+        --card: #ffffff;
+        --muted: #475569;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Cairo', system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--primary);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 1rem;
+        align-items: center;
+        padding: 2rem;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: #fff;
+      }
+
+      .hero img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .kicker {
+        color: #a7f3d0;
+        margin: 0;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+      }
+
+      main {
+        padding: 1.5rem;
+      }
+
+      .section-note {
+        color: var(--muted);
+        margin-top: -0.4rem;
+      }
+
+      .slides-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+
+      .slide-card {
+        background: var(--card);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+        border: 1px solid #e2e8f0;
+      }
+
+      .slide-card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+
+      .slide-content {
+        padding: 1rem;
+      }
+
+      .slide-index {
+        display: inline-block;
+        font-size: 0.82rem;
+        color: #0f766e;
+        background: #ccfbf1;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        margin-bottom: 0.5rem;
+      }
+
+      .slide-content ul {
+        margin: 0;
+        padding-right: 1.1rem;
+      }
+
+      .comparison {
+        margin-top: 0.8rem;
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        overflow: hidden;
+      }
+
+      .comparison table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .comparison th,
+      .comparison td {
+        padding: 0.8rem;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: right;
+      }
+
+      .comparison th {
+        background: #0f172a;
+        color: #fff;
+      }
+
+      .comparison tr:nth-child(even) {
+        background: #f8fafc;
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        color: #64748b;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .hero img {
+          height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="kicker">عرض تقديمي تفاعلي (ملف واحد)</p>
+        <h1>دور التكنولوجيا في توظيف الشباب</h1>
+        <p>
+          هذا الملف يحتوي كل شيء في مكان واحد: HTML + CSS + JavaScript + الصور
+          المناسبة + جدول مقارنة أدوات بناء المواقع.
+        </p>
+      </div>
+      <img
+        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+        alt="شباب يعملون في مساحة عمل حديثة" />
+    </header>
+
+    <main>
+      <section>
+        <h2>شرائح العرض مع الصور</h2>
+        <p class="section-note">
+          الشرائح تولد تلقائيًا من البيانات داخل نفس الملف.
+        </p>
+        <div id="slides" class="slides-grid"></div>
+      </section>
+
+      <section>
+        <h2>مقارنة أدوات تصميم المواقع</h2>
+        <div id="comparison" class="comparison"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>ملف مستقل بالكامل — افتحه مباشرة في المتصفح بدون أي ملفات خارجية.</p>
+    </footer>
+
+    <script>
+      const slideData = [
+        {
+          title: 'لماذا الموضوع مهم؟',
+          points: [
+            'التكنولوجيا تقلّل فجوة المهارات بين الشباب وسوق العمل.',
+            'المنصات الرقمية تختصر وقت الوصول لفرص وظيفية.',
+            'المشروع الرقمي يبدأ بتكلفة أقل من المشروع التقليدي.',
+          ],
+          image:
+            'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+        },
+        {
+          title: 'التدريب الإلكتروني',
+          points: [
+            'مسارات في التسويق الرقمي والبرمجة وتحليل البيانات.',
+            'تعلم مرن من الهاتف أو الكمبيوتر.',
+            'شهادات تدعم السيرة الذاتية والتوظيف.',
+          ],
+          image:
+            'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80',
+        },
+        {
+          title: 'التوظيف عبر المنصات',
+          points: [
+            'تحسين LinkedIn وCV بالكلمات المفتاحية.',
+            'متابعة وظائف يومية عبر منصات العمل.',
+            'بناء حضور مهني عبر المحتوى.',
+          ],
+          image:
+            'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
+        },
+        {
+          title: 'خطة التسويق الرقمي',
+          points: [
+            'SEO + إعلانات ممولة + بريد إلكتروني.',
+            'محتوى تعليمي وترويجي وتفاعلي.',
+            'تحليل مؤشرات الأداء شهريًا.',
+          ],
+          image:
+            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+        },
+        {
+          title: 'خطة 90 يوم',
+          points: [
+            'الشهر 1: تأسيس الموقع والمحتوى.',
+            'الشهر 2: حملات ممولة وتوسيع النشر.',
+            'الشهر 3: تحسين النتائج والتوسع.',
+          ],
+          image:
+            'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=1200&q=80',
+        },
+      ];
+
+      const comparisonRows = [
+        {
+          tool: 'WordPress',
+          advantage: 'مرونة عالية وإضافات كثيرة',
+          bestFor: 'التخصيص المتقدم',
+          image:
+            'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1000&q=80',
+        },
+        {
+          tool: 'Wix',
+          advantage: 'سهل وسريع بدون كود',
+          bestFor: 'المبتدئين',
+          image:
+            'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80',
+        },
+        {
+          tool: 'Squarespace',
+          advantage: 'قوالب بصرية أنيقة',
+          bestFor: 'العلامات التجارية المرئية',
+          image:
+            'https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=1000&q=80',
+        },
+      ];
+
+      const slidesContainer = document.querySelector('#slides');
+      slidesContainer.innerHTML = slideData
+        .map(
+          (slide, index) => `
+          <article class="slide-card">
+            <img src="${slide.image}" alt="${slide.title}" loading="lazy" />
+            <div class="slide-content">
+              <span class="slide-index">شريحة ${index + 1}</span>
+              <h3>${slide.title}</h3>
+              <ul>
+                ${slide.points.map((point) => `<li>${point}</li>`).join('')}
+              </ul>
+            </div>
+          </article>
+        `
+        )
+        .join('');
+
+      const comparisonContainer = document.querySelector('#comparison');
+      comparisonContainer.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>الأداة</th>
+            <th>الميزة</th>
+            <th>مناسبة لـ</th>
+            <th>صورة مرجعية</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${comparisonRows
+            .map(
+              (row) => `
+              <tr>
+                <td>${row.tool}</td>
+                <td>${row.advantage}</td>
+                <td>${row.bestFor}</td>
+                <td><img src="${row.image}" alt="${row.tool}" width="96" height="56" style="object-fit: cover; border-radius: 8px" loading="lazy" /></td>
+              </tr>
+            `
+            )
+            .join('')}
+        </tbody>
+      </table>
+    `;
+    </script>
+  </body>
+</html>
